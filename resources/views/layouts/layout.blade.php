@@ -50,83 +50,12 @@
                     </form>
                     <div class="header__search-close js-header-search-btn-close"><i class="icon-Cancel"></i></div>
                     <div class="header__search-btn" data-dropdown-btn="search">
-                        Topics<i class="icon-Arrow_Below"></i>
+                        Topics
                     </div>
-                    <div class="dropdown dropdown--design-01" data-dropdown-list="search">
-                        <ul>
-                            <li>
-                                <label>
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" checked="checked">
-                                        <i></i>
-                                    </label>Search Titles Only
-                                </label>
-
-                            </li>
-                            <li>
-                                <label>
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox">
-                                        <i></i>
-                                    </label>Show Results as Posts
-                                </label>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icon-Advanced_Search"></i>Advanced Search
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="header__menu">
-                    <div class="header__menu-btn" data-dropdown-btn="menu">
-                        Latest Topics<i class="icon-Menu_Icon"></i>
-                    </div>
-                    <nav class="dropdown dropdown--design-01" data-dropdown-list="menu">
-                        <div>
-                            <ul class="dropdown__catalog row">
-                                <li class="col-xs-6"><a href="#">New</a></li>
-                                <li class="col-xs-6"><a href="#">Unread</a></li>
-                                <li class="col-xs-6"><a href="#">Groups</a></li>
-                                <li class="col-xs-6"><a href="#">Users</a></li>
-                                <li class="col-xs-6"><a href="#">Tags</a></li>
-                                <li class="col-xs-6"><a href="#">Shortcuts</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Categories</h3>
-                            <ul class="dropdown__catalog row">
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-f9bc64"></i>Hobbies</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-348aa7"></i>Social</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-4436f8"></i>Video</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-5dd39e"></i>Random</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-ff755a"></i>Arts</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-bce784"></i>Tech</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-83253f"></i>Gaming</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-c49bbb"></i>Science</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-3ebafa"></i>Exchange</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-c6b38e"></i>Pets</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-a7cdbd"></i>Entertainment</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-525252"></i>Education</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-777da7"></i>Q&amp;As</a></li>
-                                <li class="col-xs-6"><a href="#" class="category"><i class="bg-368f8b"></i>Politics</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="dropdown__catalog row">
-                                <li class="col-xs-6"><a href="#">Support</a></li>
-                                <li class="col-xs-6"><a href="#">Forum Rules</a></li>
-                                <li class="col-xs-6"><a href="#">Blog</a></li>
-                                <li class="col-xs-6"><a href="#">About</a></li>
-                            </ul>
-                        </div>
-                    </nav>
                 </div>
                 <div class="header__notification">
                     <div class="header__notification-btn" data-dropdown-btn="notification">
-                        <i class="icon-Notification"></i>
-                        <span>6</span>
+                        <p style="margin-top:9px;">Notifications</p>
                     </div>
                     <div class="dropdown dropdown--design-01" data-dropdown-list="notification">
                         <div>
@@ -232,18 +161,10 @@
                     </div>
                     <div class="footer__bline">
                         <ul class="footer__menu">
-                            <li class="footer__copyright"><span>&copy; 2017 azyrusthemes.com</span></li>
+                            <li class="footer__copyright"><span>&copy; 2020 Forum</span></li>
                             <li><a href="#">Teams</a></li>
                             <li><a href="#">Privacy</a></li>
                             <li><a href="#">Send Feedback</a></li>
-                        </ul>
-                        <ul class="footer__social">
-                            <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cloud" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
                         </ul>
                         <div class="footer__language-btn-m" data-dropdown-btn="language">Americas - English<i class="icon-Arrow_Below"></i></div>
                     </div>

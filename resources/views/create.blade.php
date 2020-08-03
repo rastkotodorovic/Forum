@@ -7,7 +7,6 @@
             <div class="create">
                 <div class="create__head">
                     <div class="create__title"><img src="fonts/icons/main/New_Topic.svg" alt="New topic">Create New Thread</div>
-                    <span>Forum Guidelines</span>
                 </div>
                 <div class="create__section">
                     <label class="create__label" for="title">Thread Title</label>
