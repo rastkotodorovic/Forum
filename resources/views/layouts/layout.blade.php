@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
     <!-- icon -->
-    <link rel="stylesheet" href="fonts/icons/main/mainfont/style.css">
-    <link rel="stylesheet" href="fonts/icons/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('fonts/icons/main/mainfont/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/icons/font-awesome/css/font-awesome.min.css') }}">
 
     <!-- Vendor -->
-    <link rel="stylesheet" href="vendor/bootstrap/v3/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/bootstrap/v4/bootstrap-grid.css">
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/v3/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/v4/bootstrap-grid.css') }}">
     <!-- Custom -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,11 +36,13 @@
             <div class="container">
                 <div class="header__logo">
                     <h1>
-                        <img src="fonts/icons/main/Logo_Forum.svg" alt="logo">
+                        <img src="{{ asset('fonts/icons/main/Logo_Forum.svg ')}}" alt="logo">
                     </h1>
-                    <div class="header__logo-btn" data-dropdown-btn="logo">
-                        Forum<i class="icon-Arrow_Below"></i>
-                    </div>
+                    <a href="{{ route('threads.index') }}">
+                        <div class="header__logo-btn" data-dropdown-btn="logo">
+                            Forum<i class="icon-Arrow_Below"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="header__search">
                     <form action="#">
@@ -53,6 +55,7 @@
                         Topics
                     </div>
                 </div>
+            @if (Auth::check())
                 <div class="header__notification">
                     <div class="header__notification-btn" data-dropdown-btn="notification">
                         <p style="margin-top:9px;">Notifications</p>
@@ -69,11 +72,11 @@
                             </a>
                             <a href="#">
                                 <i class="icon-Badge"></i>
-                                <p>Earned Badge . 19 feb, 17<span><img src="fonts/icons/badges/Lets_talk.svg" alt="Lets Talk">Lets Talk</span></p>
+                                <p>Earned Badge . 19 feb, 17<span><img src="{{ asset('fonts/icons/badges/Lets_talk.svg') }}" alt="Lets Talk">Lets Talk</span></p>
                             </a>
                             <a href="#">
                                 <i class="icon-Badge"></i>
-                                <p>Earned Badge . 21 feb, 17<span><img src="fonts/icons/badges/Intermediate.svg" alt="Intermediate">Intermediate</span></p>
+                                <p>Earned Badge . 21 feb, 17<span><img src="{{ asset('fonts/icons/badges/Intermediate.svg') }}" alt="Intermediate">Intermediate</span></p>
                             </a>
                             <a href="#">
                                 <i class="icon-Share_Topic"></i>
@@ -89,27 +92,24 @@
                 </div>
                 <div class="header__user">
                     <div class="header__user-btn" data-dropdown-btn="user">
-                        <img src="fonts/icons/avatars/A.svg" alt="avatar">
-                        azyrusmax<i class="icon-Arrow_Below"></i>
+                        <img src="{{ Auth::user()->avatar }}" alt="avatar">
+                        {{ Auth::user()->name }}<i class="icon-Arrow_Below"></i>
                     </div>
-                    <nav class="dropdown dropdown--design-01" data-dropdown-list="user">
-                        <div>
-                            <ul class="dropdown__catalog">
-                                <li><a href="#">Dashboard</a></li>
-                                <li><a href="#">Badges</a></li>
-                                <li><a href="#">My Groups</a></li>
-                                <li><a href="#">Notifications</a></li>
-                                <li><a href="#">Topics</a></li>
-                                <li><a href="#">Likes</a></li>
-                                <li><a href="#">Solved</a></li>
-                            </ul>
-                        </div>
-                    </nav>
+                    <form action="/logout" method="POST">
+                        @CSRF
+                        <button class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
             <div class="header__offset-btn">
-                <a href="create"><img src="fonts/icons/main/New_Topic.svg" alt="New Topic"></a>
+                <a href="create"><img src="{{ asset('fonts/icons/main/New_Topic.svg') }}" alt="New Topic"></a>
             </div>
+            @else
+            <div class="header">
+                <a href="/register" style="margin-right:10px;">Register</a>
+                <a href="/login">Login</a>
+            </div>
+            @endif
         </div>
     </header>
 
@@ -120,7 +120,10 @@
             <div class="container">
                 <div class="footer__logo">
                     <div>
-                        <img src="fonts/icons/main/Logo_Forum.svg" alt="logo">Forum
+                        <a href="{{ route('threads.index') }}">
+                            <img src="{{ asset('fonts/icons/main/Logo_Forum.svg') }}"
+                            alt="logo">Forum
+                        </a>
                     </div>
                 </div>
                 <div class="footer__nav">

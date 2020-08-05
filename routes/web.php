@@ -21,10 +21,11 @@ Route::get('create', function () {
     return view('create');
 });
 
-Route::get('show', function () {
-    return view('show');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/threads', 'ThreadsController@index')->name('threads.index');
+Route::get('/threads/create', 'ThreadsController@create')->name('threads.create');
+Route::post('/threads/create', 'ThreadsController@store')->name('threads.store');
+Route::get('/threads/{thread}', 'ThreadsController@show')->name('threads.show');
+
+Route::post('/threads/{thread}/reply', 'RepliesController@store')->name('replies.store');
