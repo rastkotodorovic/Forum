@@ -8,7 +8,7 @@
                 <div class="topics__heading">
                     <h2 class="topics__heading-title">{{ $thread->title }}</h2>
                     <div class="topics__heading-info">
-                        <a href="#" class="category"><i class="bg-3ebafa"></i> Exchange</a>
+                        <a href="#" class="category"><i class="bg-3ebafa"></i>{{ $thread->category->name }}</a>
                     </div>
                 </div>
                 <div class="topics__body">
@@ -72,7 +72,7 @@
                                         </div>
                                         <div>
                                             <span class="topic__info-title">Users</span>
-                                            
+
                                             <div  class="topic__info-count">6</div>
                                         </div>
                                     </div>
@@ -128,7 +128,13 @@
                                             <div data-visible="mobile">
                                                 <a href="#"><i class="icon-More_Options"></i></a>
                                             </div>
-                                            <a href="#"><i class="icon-Reply_Fill"></i></a>
+                                            @if(auth()->id() === $reply->user_id)
+                                                <form action="{{ route('replies.destroy', $reply) }}" method="POST">
+                                                    @CSRF
+                                                    @method('DELETE')
+                                                    <button class="btn btn--type-02">Delete</button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +167,7 @@
                 </div>
                 <div class="topics__control">
                     @if (Auth::check())
-                        <form action="{{ route('replies.store', $thread) }}" method="POST">
+                        <form action="{{ route('replies.store', [$thread->category, $thread]) }}" method="POST">
                             @CSRF
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Example textarea</label>
@@ -171,41 +177,6 @@
                         </form>
                     @endif
                 </div>
-                <div class="topics__title">Suggested Topics</div>
-            </div>
-            <div class="posts">
-                <div class="posts__head">
-                    <div class="posts__topic">Topic</div>
-                    <div class="posts__category">Category</div>
-                    <div class="posts__users">Creator</div>
-                    <div class="posts__replies">Replies</div>
-                    <div class="posts__views">Views</div>
-                    <div class="posts__activity">Activity</div>
-                </div>
-                @foreach($threads as $thread)
-                    <div class="posts__body">
-                        <div class="posts__item">
-                            <div class="posts__section-left">
-                                <div class="posts__topic">
-                                    <div class="posts__content">
-                                        <a href="{{ route('threads.show', $thread) }}">
-                                            <h3>{{ $thread->title }}</h3>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="posts__category"><a href="#" class="category"><i class="bg-368f8b"></i>Politics</a></div>
-                            </div>
-                            <div class="posts__section-right">
-                                <div class="posts__users">
-                                    <p>{{ $thread->user->name }}</p>
-                                </div>
-                                <div class="posts__replies">{{ $thread->reply->count() }}</div>
-                                <div class="posts__views">14.5k</div>
-                                <div class="posts__activity">{{ $thread->created_at->diffForHumans() }}</div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
             </div>
         </div>
     </main>

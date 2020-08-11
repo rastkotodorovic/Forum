@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -14,32 +15,45 @@ class ThreadsController extends Controller
         $this->middleware('auth')->except('index', 'show');
     }
 
-    public function index()
+    public function index(Category $category, User $user)
     {
-        $threads = Thread::latest()->get();
+        if ($category->exists) {
+            $threads = $category->thread()->latest();
+        } else {
+            $threads = Thread::latest();
+        }
+
+        if ($username = request('by')) {
+            $user = User::where('name', $username)->first();
+            $threads->where('user_id', $user->id);
+        }
+
+        $threads = $threads->get();
 
         return view('index', [
             'threads' => $threads,
         ]);
     }
 
-    public function show(Thread $thread)
+    public function show($categoryId, Thread $thread)
     {
         return view('show', [
             'thread' => $thread,
-            'threads' => Thread::latest()->paginate(5),
         ]);
     }
 
     public function create()
     {
-        return view('create');
+        return view('create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
         Thread::create([
             'user_id' => auth()->id(),
+            'category_id' => $request->category_id,
             'title' => $request->title,
             'body' => $request->body,
         ]);

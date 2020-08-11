@@ -19,10 +19,10 @@
                             <div class="create__section">
                                 <label class="create__label" for="category">Select Category</label>
                                 <label class="custom-select">
-                                    <select id="category">
-                                        <option>Choose</option>
-                                        <option>Choose #2</option>
-                                        <option>Choose #3</option>
+                                    <select name="category_id">
+                                        @foreach($categories as $category)
+                                            <option value={{ $category->id }}>{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </label>
                             </div>

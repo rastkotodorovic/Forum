@@ -102,7 +102,7 @@
                 </div>
             </div>
             <div class="header__offset-btn">
-                <a href="create"><img src="{{ asset('fonts/icons/main/New_Topic.svg') }}" alt="New Topic"></a>
+                <a href="{{ route('threads.create') }}"><img src="{{ asset('fonts/icons/main/New_Topic.svg') }}" alt="New Topic"></a>
             </div>
             @else
             <div class="header">

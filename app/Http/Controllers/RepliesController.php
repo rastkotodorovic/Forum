@@ -13,13 +13,20 @@ class RepliesController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Thread $thread)
+    public function store($categoryId, Thread $thread)
     {
         Reply::create([
             'user_id' => auth()->id(),
             'thread_id' => $thread->id,
             'body' => request('body'),
         ]);
+
+        return back();
+    }
+
+    public function destroy(Reply $reply)
+    {
+        $reply->delete();
 
         return back();
     }
