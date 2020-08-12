@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Category;
+use App\Filter\ThreadFilter;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
@@ -15,23 +16,13 @@ class ThreadsController extends Controller
         $this->middleware('auth')->except('index', 'show');
     }
 
-    public function index(Category $category, User $user)
+    public function index(Category $category, ThreadFilter $filters)
     {
-        if ($category->exists) {
-            $threads = $category->thread()->latest();
-        } else {
-            $threads = Thread::latest();
-        }
-
-        if ($username = request('by')) {
-            $user = User::where('name', $username)->first();
-            $threads->where('user_id', $user->id);
-        }
-
-        $threads = $threads->get();
+        $threads = Thread::getThreads($category, $filters);
 
         return view('index', [
             'threads' => $threads,
+            'categories' => Category::all(),
         ]);
     }
 
@@ -51,6 +42,11 @@ class ThreadsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         Thread::create([
             'user_id' => auth()->id(),
             'category_id' => $request->category_id,
@@ -59,5 +55,12 @@ class ThreadsController extends Controller
         ]);
 
         return redirect(route('threads.index'));
+    }
+
+    public function destroy(Thread $thread)
+    {
+        $thread->delete();
+
+        return redirect()->route('threads.index');
     }
 }

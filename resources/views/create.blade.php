@@ -13,6 +13,9 @@
                     <div class="create__section">
                         <label class="create__label" for="title">Thread Title</label>
                         <input type="text" class="form-control" id="title" placeholder="Add here" name="title">
+                        @error('title')
+                            <div class="alert alert-danger" style="margin-top:20px;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -31,6 +34,9 @@
                     <div class="create__section create__textarea">
                         <label class="create__label" for="description">Description</label>
                         <textarea class="form-control" id="description" name="body"></textarea>
+                        @error('body')
+                            <div class="alert alert-danger" style="margin-top:20px;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="create__advanced">
                         <div class="row">

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Category;
+use App\Filter\ThreadFilter;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -21,5 +23,21 @@ class Thread extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
+    public static function getThreads(Category $category, ThreadFilter $filters)
+    {
+         $threads = Thread::latest();
+
+         if ($category->exists) {
+             $threads = $category->thread()->latest();
+         }
+
+         return $threads->filter($filters)->paginate(12);
     }
 }

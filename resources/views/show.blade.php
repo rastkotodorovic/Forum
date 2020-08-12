@@ -132,7 +132,7 @@
                                                 <form action="{{ route('replies.destroy', $reply) }}" method="POST">
                                                     @CSRF
                                                     @method('DELETE')
-                                                    <button class="btn btn--type-02">Delete</button>
+                                                    <button class="btn btn--type-03">Delete</button>
                                                 </form>
                                             @endif
                                         </div>
@@ -146,17 +146,22 @@
                     <div class="topics__calendar">
                         <div class="calendar">
                             <div class="calendar__top">
-                                <a href="#" class="calendar__btn calendar__btn--c-01"><i class="icon-Calender"></i></a>
+                                @if (auth()->user()->id === $thread->user_id)
+                                    <form action="{{ route('threads.destroy', $thread) }}" method="POST">
+                                    @CSRF
+                                        <button class="btn btn--type-03">Delete Thread</button>
+                                    </form>
+                                @endif
                             </div>
                             <div class="calendar__center">
-                                <div class="calendar__first">Jun 12</div>
+                                <div class="calendar__first">{{ $thread->created_at->diffForHumans() }}</div>
                                 <div class="calendar__range">
-                                    <div class="calendar__current">
-                                        <p>31 / 75</p>
-                                        <span>Jun 17</span>
-                                    </div>
                                 </div>
-                                <div class="calendar__last">6h ago</div>
+                                <div class="calendar__last">
+                                    @isset ($reply)
+                                        {{ $reply->created_at->diffForHumans()}}
+                                    @endisset
+                                </div>
                             </div>
                             <div class="calendar__bottom">
                                 <a href="#" class="calendar__btn calendar__btn--c-01"><i class="icon-Track"></i></a>

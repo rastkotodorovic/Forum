@@ -10,8 +10,8 @@
                         <div class="btn-select" data-dropdown-btn="categories">All Categories</div>
                         <nav class="dropdown dropdown--design-01" data-dropdown-list="categories">
                             <ul class="dropdown__catalog row">
-                                @foreach($threads as $thread)
-                                    <li class="col-xs-6"><a href="/threads/{{ $thread->category->slug }}" class="category"><i class="bg-f9bc64"></i>{{ $thread->category->name }}</a></li>
+                                @foreach($categories as $category)
+                                    <li class="col-xs-6"><a href="/threads/{{ $category->slug }}" class="category"><i class="bg-f9bc64"></i>{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </nav>
@@ -23,19 +23,21 @@
                         <div class="dropdown dropdown--design-01" data-dropdown-list="menu">
                             <ul class="dropdown__catalog">
                                 <li><a href="#">Latest</a></li>
+                                <li><a href="#">Popular</a></li>
                                 <li><a href="#">Unread</a></li>
-                                <li><a href="#">Rising</a></li>
                                 <li><a href="#">Most Liked</a></li>
                                 <li><a href="#">Follow Feed</a></li>
                             </ul>
                         </div>
                     </div>
                     <ul>
-                        <li class="active"><a href="#">Latest</a></li>
+                        <li
+                            class="{{ (request()->is('threads')) ? 'active' : '' }}"
+                        >
+                            <a href="#">Latest</a>
+                        </li>
+                        <li><a href="#">Popular</a></li>
                         <li><a href="#">Unread</a></li>
-                        <li><a href="#">Rising</a></li>
-                        <li><a href="#">Most Liked</a></li>
-                        <li><a href="#">Follow Feed</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,6 +77,7 @@
                     </div>
                 @endforeach
             </div>
+            <div style="margin-left:40%;"> {{ $threads->links() }}</div>
         </div>
     </main>
 

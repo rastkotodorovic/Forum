@@ -430,6 +430,11 @@ select {
 .btn--type-02 {
   background-color: #f9bc64;
 }
+
+.btn--type-03 {
+  background-color: #B22222;
+  color: white;
+}
 .btn--type-02,
 .btn--type-02:visited,
 .btn--type-02:active,

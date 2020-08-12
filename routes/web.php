@@ -24,6 +24,7 @@ Route::get('/threads/create', 'ThreadsController@create')->name('threads.create'
 Route::post('/threads/create', 'ThreadsController@store')->name('threads.store');
 Route::get('/threads/{category}', 'ThreadsController@index');
 Route::get('/threads/{category}/{thread}', 'ThreadsController@show')->name('threads.show');
+Route::post('/threads/{thread}/destroy', 'ThreadsController@destroy')->name('threads.destroy');
 
 Route::post('/threads/{category}/{thread}/reply', 'RepliesController@store')->name('replies.store');
 Route::delete('/threads/reply/{reply}', 'RepliesController@destroy')->name('replies.destroy');
