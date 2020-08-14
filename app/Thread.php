@@ -32,7 +32,7 @@ class Thread extends Model
 
     public static function getThreads(Category $category, ThreadFilter $filters)
     {
-         $threads = Thread::latest();
+        $threads = Thread::withCount('reply')->latest();
 
          if ($category->exists) {
              $threads = $category->thread()->latest();

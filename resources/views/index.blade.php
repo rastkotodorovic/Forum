@@ -34,10 +34,13 @@
                         <li
                             class="{{ (request()->is('threads')) ? 'active' : '' }}"
                         >
-                            <a href="#">Latest</a>
+                            <a href="{{ route('threads.index') }}">Latest</a>
                         </li>
-                        <li><a href="#">Popular</a></li>
+                        <li><a href="/threads?popular=1">Popular</a></li>
                         <li><a href="#">Unread</a></li>
+                        @auth
+                            <li><a href="/threads?by={{ auth()->user()->name }}">My threads</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
