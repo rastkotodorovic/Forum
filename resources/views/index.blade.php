@@ -32,14 +32,26 @@
                     </div>
                     <ul>
                         <li
-                            class="{{ (request()->is('threads')) ? 'active' : '' }}"
+                            class="{{ (request()->is('threads') && empty(request()->all())) ? 'active' : '' }}"
                         >
                             <a href="{{ route('threads.index') }}">Latest</a>
                         </li>
-                        <li><a href="/threads?popular=1">Popular</a></li>
-                        <li><a href="#">Unread</a></li>
+                        <li
+                            class="{{ (request()->get('top')) ? 'active' : '' }}"
+                        >
+                            <a href="/threads?top=1">Top threads</a>
+                        </li>
+                        <li
+                            class="{{ (request()->get('unanswered')) ? 'active' : '' }}"
+                        >
+                            <a href="/threads?unanswered=1">Unanswered</a>
+                        </li>
                         @auth
-                            <li><a href="/threads?by={{ auth()->user()->name }}">My threads</a></li>
+                            <li
+                                class="{{ (request()->get('by')) ? 'active' : '' }}"
+                            >
+                                <a href="/threads?by={{ auth()->user()->name }}">My threads</a>
+                            </li>
                         @endauth
                     </ul>
                 </div>
@@ -72,8 +84,8 @@
                                         {{ $thread->user->name }}
                                     </a>
                                 </div>
-                                <div class="posts__replies">{{ $thread->reply->count() }}</div>
-                                <div class="posts__views">14.5k</div>
+                                <div class="posts__replies">{{ $thread->replies }}</div>
+                                <div class="posts__views">{{ $thread->visits() }}</div>
                                 <div class="posts__activity">{{ $thread->created_at->diffForHumans() }}</div>
                             </div>
                         </div>
@@ -83,5 +95,6 @@
             <div style="margin-left:40%;"> {{ $threads->links() }}</div>
         </div>
     </main>
+
 
 @endsection

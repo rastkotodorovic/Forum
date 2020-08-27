@@ -19,6 +19,7 @@ class CreateThreadsTable extends Migration
             $table->foreignId('category_id');
             $table->string('title');
             $table->text('body');
+            $table->integer('replies')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

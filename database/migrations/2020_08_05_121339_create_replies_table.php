@@ -18,6 +18,7 @@ class CreateRepliesTable extends Migration
             $table->foreignId('thread_id');
             $table->foreignId('user_id');
             $table->text('body');
+            $table->integer('favorites')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

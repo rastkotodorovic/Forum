@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Reply;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'favorited',
     ];
 
     /**
@@ -42,4 +45,18 @@ class User extends Authenticatable
         return $this->hasMany(Thread::class);
     }
 
+    public function setAvatarAttribute($value)
+    {
+        $this->attributes['avatar'] = Storage::disk('public')->put('avatars', $value);
+    }
+
+    public function favoriteThreads()
+    {
+        return $this->morphedByMany(Thread::class, 'favoritable');
+    }
+
+    public function favoriteReplies()
+    {
+        return $this->morphedByMany(Reply::class, 'favoritable');
+    }
 }

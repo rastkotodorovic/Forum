@@ -12,6 +12,7 @@ $factory->define(Thread::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
+        'replies' => 1,
         'user_id' => function() {
             return factory(User::class)->create()->id;
         },

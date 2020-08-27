@@ -12,7 +12,7 @@
                     @CSRF
                     <div class="create__section">
                         <label class="create__label" for="title">Thread Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Add here" name="title">
+                        <input type="text" class="form-control" id="title" placeholder="Add here" name="title" value="{{ old('title') }}">
                         @error('title')
                             <div class="alert alert-danger" style="margin-top:20px;">{{ $message }}</div>
                         @enderror
@@ -23,17 +23,21 @@
                                 <label class="create__label" for="category">Select Category</label>
                                 <label class="custom-select">
                                     <select name="category_id">
+                                        <option>Select Category</option>
                                         @foreach($categories as $category)
                                             <option value={{ $category->id }}>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('category_id')
+                                        <div class="alert alert-danger" style="margin-top:20px;">{{ $message }}</div>
+                                    @enderror
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="create__section create__textarea">
                         <label class="create__label" for="description">Description</label>
-                        <textarea class="form-control" id="description" name="body"></textarea>
+                        <textarea class="form-control" id="description" name="body">{{ old('body') }}</textarea>
                         @error('body')
                             <div class="alert alert-danger" style="margin-top:20px;">{{ $message }}</div>
                         @enderror
