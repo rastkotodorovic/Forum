@@ -16,7 +16,13 @@
                         <div class="topic">
                             <div class="topic__head">
                                 <div class="topic__avatar">
-                                    <a href="#" class="avatar"><img src="{{ $thread->user->avatar }}" alt="avatar"></a>
+                                    <a href="#" class="avatar">
+                                    @if(empty($thread->user->avatar))
+                                        <img src="https://image.shutterstock.com/image-illustration/male-default-avatar-profile-gray-260nw-582509287.jpg" alt="Default avatar">
+                                    @else
+                                        <img src="{{ asset('storage/' . $thread->user->avatar) }}" alt="avatar" class="img-circle">
+                                    @endif
+                                    </a>
                                 </div>
                                 <div class="topic__caption">
                                     <div class="topic__name">
@@ -68,7 +74,7 @@
                                         </div>
                                         <div>
                                             <span class="topic__info-title">Views</span>
-                                            <div  class="topic__info-count">205</div>
+                                            <div  class="topic__info-count">{{ $thread->visits() }}</div>
                                         </div>
                                         <div>
                                             <span class="topic__info-title">Users</span>
@@ -85,7 +91,13 @@
                                 <div class="topic">
                                     <div class="topic__head">
                                         <div class="topic__avatar">
-                                            <a href="#" class="avatar"><img src="{{ $reply->user->avatar }}" alt="avatar"></a>
+                                            <a href="#" class="avatar">
+                                            @if(empty($reply->user->avatar))
+                                                <img src="https://image.shutterstock.com/image-illustration/male-default-avatar-profile-gray-260nw-582509287.jpg" alt="Default avatar">
+                                            @else
+                                                <img src="{{ asset('storage/' . $reply->user->avatar) }}" alt="avatar" class="img-circle">
+                                            @endif
+                                            </a>
                                         </div>
                                         <div class="topic__caption">
                                             <div class="topic__name">
@@ -93,8 +105,15 @@
                                             </div>
                                             <div class="topic__date">
                                                 <div class="topic__user topic__user--pos-r">
+                                                    Replied to
                                                     <i class="icon-Reply_Fill"></i>
-                                                    <a href="#" class="avatar"><img src="{{ $reply->thread->user->avatar }}" alt="avatar"></a>
+                                                    <a href="#" class="avatar">
+                                                        @if(empty($reply->thread->user->avatar))
+                                                            <img src="https://image.shutterstock.com/image-illustration/male-default-avatar-profile-gray-260nw-582509287.jpg" alt="Default avatar">
+                                                        @else
+                                                            <img src="{{ asset('storage/' . $reply->thread->user->avatar) }}" alt="avatar" class="img-circle">
+                                                        @endif
+                                                    </a>
                                                     <a href="#" class="topic__user-name">{{ $reply->thread->user->name }}</a>
                                                 </div>
                                                 <i class="icon-Watch_Later"></i>{{ $reply->created_at->diffForHumans() }}

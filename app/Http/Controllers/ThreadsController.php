@@ -6,6 +6,7 @@ use App\User;
 use App\Reply;
 use App\Thread;
 use App\Category;
+use Illuminate\View\View;
 use App\Filter\ThreadFilter;
 use Illuminate\Http\Request;
 use App\Http\Requests\ThreadRequest;

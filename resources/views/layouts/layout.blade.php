@@ -96,7 +96,11 @@
                     </div>
                     <div class="header__user">
                         <div class="header__user-btn" data-dropdown-btn="user">
-                            <img src="{{ Auth::user()->avatar }}" alt="avatar">
+                            @if(empty(Auth::user()->avatar))
+                                <img src="https://image.shutterstock.com/image-illustration/male-default-avatar-profile-gray-260nw-582509287.jpg" alt="Default avatar">
+                            @else
+                                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="avatar" class="img-circle">
+                            @endif
                             {{ Auth::user()->name }}
                         </div>
                         <a href="{{ route('user.edit', Auth::user()) }}" style="margin-left:15px;">Edit</a>
